@@ -1,0 +1,16 @@
+{
+  "name": "smoke_picard",
+  "status": "dry_run_ok",
+  "metrics": {
+    "engine": "picard",
+    "note": "dry-run on mac; real runs happen on CSD3",
+    "config": {
+      "name": "smoke_picard",
+      "engine": "picard",
+      "task": "spider_dev",
+      "beam": 4,
+      "topk": 4,
+      "mode": "guards"
+    }
+  }
+}

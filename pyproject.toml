@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tg561_thesis"
+version = "0.0.1"
+description = "Thesis reproduction and extensions (PICARD + XGrammar)"
+requires-python = ">=3.10"
+dependencies = ["regex", "tqdm"]
+
+[tool.setuptools]
+packages = ["src", "src.constraints", "src.decoding", "src.metrics"]

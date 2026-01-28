@@ -1,0 +1,6 @@
+[submodule "external/picard"]
+	path = external/picard
+	url = https://github.com/ElementAI/picard.git
+[submodule "external/xgrammar"]
+	path = external/xgrammar
+	url = https://github.com/mlc-ai/xgrammar.git

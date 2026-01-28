@@ -1,0 +1,27 @@
+{
+  "engine": "sqlguard",
+  "dialect": "sqlite",
+  "good": {
+    "name": "sqlguard",
+    "n_steps": 5,
+    "ok_steps": 5,
+    "rejected_steps": 0,
+    "avg_step_ms": 0.452423095703125,
+    "reasons": {
+      "null": 4,
+      "incomplete": 1
+    }
+  },
+  "bad": {
+    "name": "sqlguard",
+    "n_steps": 3,
+    "ok_steps": 2,
+    "rejected_steps": 1,
+    "avg_step_ms": 0.05038579305013021,
+    "reasons": {
+      "null": 1,
+      "incomplete": 1,
+      "parse_error": 1
+    }
+  }
+}

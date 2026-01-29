@@ -11,7 +11,7 @@ from typing import Any, Dict, List
 import subprocess
 
 
-def run_one(model: str, prompt: str, max_new_tokens: int, constraint: str, out_path: Path) -> Dict[str, Any]:
+def run_one(model: str, prompt: str, max_new_tokens: int, constraint: str, top_k: int, out_path: Path) -> Dict[str, Any]:
     cmd = [
         "python",
         "-m",
@@ -24,6 +24,8 @@ def run_one(model: str, prompt: str, max_new_tokens: int, constraint: str, out_p
         str(max_new_tokens),
         "--constraint",
         constraint,
+        "--top_k",
+        str(top_k),
         "--out",
         str(out_path),
     ]
@@ -37,6 +39,7 @@ def main() -> None:
     ap.add_argument("--prompts", required=True, help="path to txt file, one prompt per line")
     ap.add_argument("--max_new_tokens", type=int, default=64)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--top_k", type=int, default=1)
     args = ap.parse_args()
 
     prompts = [ln.strip() for ln in Path(args.prompts).read_text().splitlines() if ln.strip()]
@@ -48,8 +51,8 @@ def main() -> None:
         pdir = out_root.parent / "runs"
         pdir.mkdir(parents=True, exist_ok=True)
 
-        a = run_one(args.model, p, args.max_new_tokens, "none", pdir / f"{i:03d}_none.json")
-        b = run_one(args.model, p, args.max_new_tokens, "sqlguard", pdir / f"{i:03d}_sqlguard.json")
+        a = run_one(args.model, p, args.max_new_tokens, "none", args.top_k, pdir / f"{i:03d}_none.json")
+        b = run_one(args.model, p, args.max_new_tokens, "sqlguard", args.top_k, pdir / f"{i:03d}_sqlguard.json")
 
         per.append({"i": i, "prompt": p, "none": a, "sqlguard": b})
 
